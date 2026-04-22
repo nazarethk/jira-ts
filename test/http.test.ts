@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import type * as undiciModule from "undici";
+import { Headers as UndiciHeaders } from "undici";
 import { makeRequestFunction } from "../src/http.js";
 
 const mockFetch = vi.fn();
@@ -55,6 +56,18 @@ describe("http wrapper", () => {
       method: "GET",
     });
     expect(result).toEqual({ key: "X-1" });
+  });
+
+  it("parses JSON response when headers are an undici Headers instance (not global Headers)", async () => {
+    const headers = new UndiciHeaders({ "content-type": "application/json;charset=utf-8" });
+    mockFetch.mockResolvedValueOnce({
+      status: 200,
+      headers,
+      text: async () => JSON.stringify([{ id: "16655", name: "" }]),
+    });
+    const request = makeRequestFunction({ strictSSL: true, auth: {} });
+    const result = await request("https://jira.example.com/x", { method: "GET" });
+    expect(result).toEqual([{ id: "16655", name: "" }]);
   });
 
   it("rejects with {body, headers, statusCode} on >=400", async () => {

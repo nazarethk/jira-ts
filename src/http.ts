@@ -31,8 +31,8 @@ function buildDispatcher(cfg: HttpConfig): unknown {
 
 function headersToRecord(h: Headers | Record<string, string>): Record<string, string> {
   const out: Record<string, string> = {};
-  if (h instanceof Headers) {
-    h.forEach((value, key) => {
+  if (h && typeof (h as Headers).forEach === "function") {
+    (h as Headers).forEach((value, key) => {
       out[key.toLowerCase()] = value;
     });
     return out;
