@@ -1,6 +1,6 @@
 {
   "name": "jira-ts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Modern TypeScript client for the Jira Cloud REST API (v2 + v3)",
   "keywords": [
     "jira",
