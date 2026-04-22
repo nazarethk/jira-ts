@@ -17,12 +17,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
           registry-url: https://registry.npmjs.org
-
-      - name: Upgrade npm for Trusted Publishing (requires >=11.5.1)
-        run: npm install -g npm@latest
 
       - name: Verify tag matches package.json version
         run: |
