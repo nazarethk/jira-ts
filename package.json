@@ -1,0 +1,59 @@
+{
+  "name": "jira-ts",
+  "version": "1.0.0",
+  "description": "Modern TypeScript client for the Jira Cloud REST API (v2 + v3)",
+  "keywords": [
+    "jira",
+    "atlassian",
+    "rest",
+    "typescript",
+    "esm",
+    "fetch"
+  ],
+  "author": "Nazareth Keshishian",
+  "license": "MIT",
+  "homepage": "https://github.com/nazarethk/jira-ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nazarethk/jira-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nazarethk/jira-ts/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src test",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run lint && npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^2.0.0"
+  },
+  "dependencies": {
+    "undici": "^8.1.0"
+  }
+}
