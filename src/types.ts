@@ -159,9 +159,16 @@ export interface AdfText {
   marks?: Array<{ type: string; attrs?: Record<string, unknown> }>;
 }
 
+export interface AdfMention {
+  type: "mention";
+  attrs: { id: string; text?: string };
+}
+
+export type AdfInlineNode = AdfText | AdfMention;
+
 export interface AdfParagraph {
   type: "paragraph";
-  content: AdfText[];
+  content: AdfInlineNode[];
 }
 
 export interface AdfDocument {

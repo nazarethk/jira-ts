@@ -1,5 +1,5 @@
 export { JiraApi, JiraApi as default } from "./client.js";
-export { toAdf, isAdfDocument } from "./adf.js";
+export { toAdf, isAdfDocument, fromAdf, wikiToAdf } from "./adf.js";
 export type {
   JiraApiOptions,
   JsonResponse,
